@@ -3,12 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import CapturarDados from './components/CapturarDados.jsx'
 
 const App = () => {
+  const [valorInicial, setValorInicial] = useState(0)
+  const [valorAporte, setValorAporte] = useState(0)
+  const [taxaJuros, setTaxaJuros] = useState(0)
+  const [periodo, setPeriodo] = useState(0)
   const [calculo, setCalculo] = useState(0)
-  // const [aportemensal, setEntrada] = useState(0)
-  // const [taxadejuros, setEntrada] = useState(0)
-  // const [periodo, setEntrada] = useState(0)
-  // const [calculo, setEntrada] = useState(null)
-  // const [valorfinal, setEntrada] = useState(null)
+
   return (
     <div className="container py-4">
       <div className="row justify-content-center">
@@ -16,8 +16,17 @@ const App = () => {
           <div className="card">
             <div className="card-body text-center">
               <h1 className="h3 mb-0">Hello, Investimentos</h1>
-              <CapturarDados setCalculo={setCalculo}
-              calculo={calculo}
+              <CapturarDados
+                valorInicial={valorInicial}
+                setValorInicial={setValorInicial}
+                valorAporte={valorAporte}
+                setValorAporte={setValorAporte}
+                taxaJuros={taxaJuros}
+                setTaxaJuros={setTaxaJuros}
+                periodo={periodo}
+                setPeriodo={setPeriodo}
+                calculo={calculo}
+                setCalculo={setCalculo}
               />
             </div>
           </div>
