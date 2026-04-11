@@ -1,16 +1,14 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
-    <div className='container mt-2'>
-      <div className='row justify-content-center'>
-        <div className='col-12'
-        style={{margin: 'auto', width: 768, backgroundColor: '#EEE', padding: 12, borderRadius: 8}}>
-          <div className='card'>
-            <div className='card-body'>
-                <h1 className='text-align-center'>
-                  Hello investimentos
-                </h1>                
+    <div className="container py-4">
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-8 col-lg-6">
+          <div className="card">
+            <div className="card-body text-center">
+              <h1 className="h3 mb-0">Hello, Investimentos</h1>
             </div>
           </div>
         </div>
