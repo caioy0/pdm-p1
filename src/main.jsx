@@ -1,7 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-// import CapturarDados from './components/CapturarDados.jsx'
+import 'primereact/resources/primereact.min.css'
+import 'primereact/resources/themes/nano/theme.css'
+import 'primeicons/primeicons.css'
+import 'primeflex/primeflex.min.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
