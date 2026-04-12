@@ -9,60 +9,67 @@ const CapturarDados = ({
   setTaxaJuros,
   periodo,
   setPeriodo,
-  setCalculo,
-  calculo,
+  calcular,           
 }) => {
   return (
     <div>
       <div
-        className="mt-2 bd-2 align-content-between fs-4 "
+        className="mt-3 p-3"
         style={{
           margin: 'auto',
-          width: 768,
-          backgroundColor: '#EEE',
-          padding: 12,
-          borderRadius: 8,
+          maxWidth: '768px',
+          backgroundColor: '#f8f9fa',
+          borderRadius: '8px',
         }}
       >
         <input
           placeholder="Valor inicial"
-          type="text"
+          type="number"
+          className="form-control mb-2"
           value={valorInicial}
           onChange={(e) => setValorInicial(e.target.value)}
         />
         <input
           placeholder="Aporte mensal"
-          type="text"
+          type="number"
+          className="form-control mb-2"
           value={valorAporte}
           onChange={(e) => setValorAporte(e.target.value)}
         />
         <input
-          placeholder="Taxa de juros"
-          type="text"
+          placeholder="Taxa de juros (% a.a.)"
+          type="number"
+          className="form-control mb-2"
           value={taxaJuros}
           onChange={(e) => setTaxaJuros(e.target.value)}
         />
         <input
-          placeholder="Periodo"
-          type="text"
+          placeholder="Período (meses)"
+          type="number"
+          className="form-control mb-3"
           value={periodo}
           onChange={(e) => setPeriodo(e.target.value)}
         />
       </div>
 
-      <div className="d-flex align-items-center gap-2">
-        <button
-          className="btn btn-primary"
-          onClick={() => setCalculo((prev) => prev + 1)}
-        >
-          Calculo <i className="fas fa-plus"></i>
+      <div className="d-flex justify-content-center gap-2 mt-3">
+        <button className="btn btn-primary px-4" onClick={calcular}>
+          Calcular
         </button>
-
-        <button className="btn btn-secondary" onClick={() => setCalculo(0)}>
-          Reiniciar
+        
+        <button 
+          className="btn btn-secondary px-4" 
+          onClick={() => {
+            // Limpa tudo
+            setValorInicial(0)
+            setValorAporte(0)
+            setTaxaJuros(0)
+            setPeriodo(0)
+          }}
+        >
+          Limpar
         </button>
       </div>
-      <p>Numero: {calculo}</p>
     </div>
   )
 }
