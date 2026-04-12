@@ -76,6 +76,31 @@ const App = () => {
               />
 
               {conteudoResultados}
+              <div className="col-12 col-lg-6">
+                  <ExibeDados resultado={resultado} />
+
+                  <div className="card mt-4">
+                    <div className="card-body">
+                      <h4 className="mb-3">Historico de simulacoes</h4>
+
+                      {historico.length === 0 && (
+                        <p className="text-muted mb-0">Nenhuma simulacao realizada.</p>
+                      )}
+
+                      {historico.length > 0 && (
+                        <ul className="list-group">
+                          {historico.map((item, index) => (
+                            <li key={index} className="list-group-item">
+                              <strong>Valor final:</strong> R$ {item.valorFinal.toFixed(2)}
+                              <br />
+                              <strong>Data/Hora:</strong> {item.dataHora}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
