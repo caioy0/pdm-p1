@@ -1,6 +1,6 @@
-// src/components/CapturarDados.jsx
+// src/components/CapturaDados.jsx
 
-const CapturarDados = ({
+const CapturaDados = ({
   valorInicial,
   setValorInicial,
   valorAporte,
@@ -74,4 +74,4 @@ const CapturarDados = ({
   )
 }
 
-export default CapturarDados
+export default CapturaDados

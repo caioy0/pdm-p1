@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import CapturarDados from './components/CapturarDados.jsx'
+import CapturaDados from './components/CapturaDados.jsx'
 import ExibeDados from './components/ExibeDados.jsx'
 import HistoricoSimulacoes from './components/HistoricoSimulacoes.jsx'
   
@@ -56,7 +56,7 @@ const App = () => {
             <div className="card-body text-center">
               <h1 className="h3 mb-0">Hello, Investimentos</h1>
 
-              <CapturarDados
+              <CapturaDados
                 valorInicial={valorInicial}
                 setValorInicial={setValorInicial}
                 valorAporte={valorAporte}
