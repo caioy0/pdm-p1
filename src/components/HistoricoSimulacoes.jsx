@@ -12,9 +12,9 @@ const HistoricoSimulacoes = ({ historico }) => {
           <ul className="list-group">
             {historico.map((item, index) => (
               <li key={index} className="list-group-item">
-                <strong>Valor final:</strong> R$ {Number(item.valorFinal).toLocaleString('pt-BR')}
+                <b>Valor final:</b> R$ {Number(item.valorFinal).toFixed(2)}
                 <br />
-                <strong>Data/Hora:</strong> {item.dataHora.toLocaleString('pt-BR')}
+                <b>Data/Hora:</b> {item.dataHora.toLocaleString('pt-BR')}
               </li>
             ))}
           </ul>

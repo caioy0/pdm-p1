@@ -43,12 +43,11 @@ const App = () => {
 
     setResultados(novoResultado)
     setHistorico([
-     ...historico,
-  { valorFinal, dataHora: new Date() }
-])
-
+    ...historico,
+    { valorFinal: novoResultado.valorFinal, dataHora: new Date() }
+  ])
   }
-
+  
   return (
     <div className="container py-4">
       <div className="row justify-content-center">
@@ -78,27 +77,6 @@ const App = () => {
                 />
               )}
               <HistoricoSimulacoes historico={historico} />
-              <div className="card mt-4 text-start">
-                <div className="card-body">
-                  <h4 className="mb-3">Historico de simulacoes</h4>
-
-                  {historico.length === 0 && (
-                    <p className="text-muted mb-0">Nenhuma simulacao realizada.</p>
-                  )}
-
-                  {historico.length > 0 && (
-                    <ul className="list-group">
-                      {historico.map((item, index) => (
-                        <li key={index} className="list-group-item">
-                          Valor final: R$ {Number(item.valorFinal).toLocaleString('pt-BR')}
-                          <br />
-                          Data/Hora: {item.dataHora}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </div>
             </div>
           </div>
         </div>
