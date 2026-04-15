@@ -1,20 +1,35 @@
-const HistoricoSimulacoes = ({ historico }) => {
+// src/components/HistoricoSimulacoes.jsx
+
+import React, { useState, useEffect } from 'react'
+
+const HistoricoSimulacoes = ({ novoResultado }) => {
+  const [historico, setHistorico] = useState([])
+
+  useEffect(() => {
+    if (novoResultado) {
+      setHistorico((prev) => [
+        ...prev,
+        { valorFinal: novoResultado.valorFinal, dataHora: new Date() },
+      ])
+    }
+  }, [novoResultado])
+
   return (
     <div className="card mt-4">
       <div className="card-body">
-        <h4 className="mb-3">Histórico de Simulações</h4>
+        <h4 className="mb-3">Historico de simulações</h4>
 
         {historico.length === 0 && (
-          <p className="text-muted mb-0">Nenhuma simulação realizada.</p>
+          <p className="text-muted mb-0">Nenhuma simulacao realizada.</p>
         )}
 
         {historico.length > 0 && (
           <ul className="list-group">
             {historico.map((item, index) => (
               <li key={index} className="list-group-item">
-                <b>Valor final:</b> R$ {Number(item.valorFinal).toFixed(2)}
+                <p>Valor final:</p> R$ {Number(item.valorFinal).toLocaleString('pt-BR')}
                 <br />
-                <b>Data/Hora:</b> {item.dataHora.toLocaleString('pt-BR')}
+                <p>Data/Hora:</p> {item.dataHora.toLocaleString('pt-BR')}
               </li>
             ))}
           </ul>

@@ -5,3 +5,9 @@
 - Gabriel Duarte - 2040482322052
 - Gabriel Mazotti - 2040482312028
 - Julio Cesar - 2040482312048
+
+## Dependencias npm
+- prime react
+- prime icons
+- prime flex
+- fortawesome
