@@ -91,7 +91,7 @@ const CapturaDados = () => {
           <div class='field col'>
             <label htmlFor="taxajuros"> 
               <i className="pi pi-percentage mr-1 taxa-info" /> 
-              Taxa de juros (% a.a.)
+              Taxa de juros
             </label>
             <input id="taxajuros"
               value={taxaJuros} 
