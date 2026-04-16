@@ -10,6 +10,7 @@ const CapturaDados = () => {
   const [taxaJuros, setTaxaJuros] = useState(null)
   const [periodo, setPeriodo] = useState(null)
   const [resultados, setResultados] = useState(null)
+  const [historico, setHistorico] = useState([])
 
   const calcular = () => {
     const vi = Number(valorInicial)
@@ -36,12 +37,18 @@ const CapturaDados = () => {
     const rentabilidade =
       totalAportado > 0 ? ((valorFinal / totalAportado) - 1) * 100 : 0
 
-    setResultados({
+    const novoResultado = {
       valorFinal: Number(valorFinal.toFixed(2)),
       numAportes: quantidadeMeses,
       jurosAcumulados: Number(jurosAcumulados.toFixed(2)),
       rentabilidade: Number(rentabilidade.toFixed(2)),
-    })
+    }
+
+    setResultados(novoResultado)
+    setHistorico((prev) => [
+      ...prev,
+      { valorFinal: novoResultado.valorFinal, dataHora: new Date() },
+    ])
   }
 
   const limpar = () => {
@@ -123,7 +130,7 @@ const CapturaDados = () => {
           rentabilidade={resultados.rentabilidade}/>
       )}
 
-      <HistoricoSimulacoes novoResultado={resultados} />
+      <HistoricoSimulacoes historico={historico} />
     </div>
   )
 }

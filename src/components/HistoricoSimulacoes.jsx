@@ -1,17 +1,5 @@
 // src/components/HistoricoSimulacoes.jsx
-import { useState, useEffect } from 'react'
-
-const HistoricoSimulacoes = ({ novoResultado }) => {
-  const [historico, setHistorico] = useState([])
-
-  useEffect(() => {
-    if (novoResultado) {
-      setHistorico((prev) => [
-        ...prev,
-        { valorFinal: novoResultado.valorFinal, dataHora: new Date() },
-      ])
-    }
-  }, [novoResultado])
+const HistoricoSimulacoes = ({ historico = [] }) => {
 
   return (
     <div className="card mt-4">
