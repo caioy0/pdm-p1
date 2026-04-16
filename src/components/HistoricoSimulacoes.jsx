@@ -1,6 +1,5 @@
 // src/components/HistoricoSimulacoes.jsx
-
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 const HistoricoSimulacoes = ({ novoResultado }) => {
   const [historico, setHistorico] = useState([])
@@ -18,6 +17,11 @@ const HistoricoSimulacoes = ({ novoResultado }) => {
     <div className="card mt-4">
       <div className="card-body">
         <h4 className="mb-3">Historico de simulações</h4>
+        {historico.length > 0 && (
+            <p className="bg-primary ms-2">
+              {historico.length} - simulações
+            </p>
+          )}
 
         {historico.length === 0 && (
           <p className="text-muted mb-0">Nenhuma simulacao realizada.</p>

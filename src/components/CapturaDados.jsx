@@ -1,9 +1,6 @@
 // src/components/CapturaDados.jsx
 import { useState } from 'react'
-import { InputNumber } from 'primereact/inputnumber'
 import { Button } from 'primereact/button'
-import { FloatLabel } from 'primereact/floatlabel'
-import 'primeicons/primeicons.css'
 import ExibeDados from './ExibeDados.jsx'
 import HistoricoSimulacoes from './HistoricoSimulacoes.jsx'
 
@@ -57,65 +54,55 @@ const CapturaDados = () => {
 
   return (
     <div  className="p-4" style={{ maxWidth: '860px', margin: '0 auto' }}>
-      
       <div className="p-4"
-      class="form grid">
+        class="form grid">
           <div className="field col-12 md:col-6 lg:col-3">
-            <FloatLabel>
-              <InputNumber
-                id="valor-inicial"
-                value={valorInicial}
-                onValueChange={(e) => setValorInicial(e.value)}
-                mode="currency"
-                currency="BRL"
-                locale="pt-BR"
-                minFractionDigits={2}
-                className="w-full"
-              />
               <label htmlFor="valor-inicial">
                 <i className="pi pi-wallet mr-1" />
                 Valor inicial
               </label>
-            </FloatLabel>
+              <input
+                id="valor-inicial"
+                value={valorInicial}
+                onChange={(e) => setValorInicial(e.target.value)}
+                type="number"
+                step="0.1"
+                className="w-full"/>
           </div>
 
           <div class='field col'>
-            <FloatLabel>  
-            <InputNumber id='aporte-mensal'
-              className="form-control "
-              value={valorAporte}
-              onValueChange={(e) => setValorAporte(e.value)}/>
-              <label htmlFor="aporte-mensal">Aporte mensal</label>
-            </FloatLabel> 
+            <label htmlFor="aporte-mensal">
+                <i className="pi pi-plus-circle mr-1" />
+                Aporte mensal
+              </label>
+            <input
+                id="aporte-mensal"
+                value={valorAporte}
+                onChange={(e) => setValorAporte(e.target.value)}
+                className="w-full"/>
           </div>
-        {/* <input
-          placeholder="Taxa de juros (% a.a.)"
-          type="number"
-          className="form-control mb-2"
-          value={taxaJuros}
-          onChange={(e) => setTaxaJuros(e.target.value)}
-          /> */}
           <div class='field col'>
-            <FloatLabel>
-              <InputNumber id="taxajuros"
-              value={taxaJuros} onValueChange={(e) => setTaxaJuros(e.value)} suffix="%" 
-              showButtons buttonLayout="horizontal" step={0.25}
-              decrementButtonClassName="p-button-danger" 
-              incrementButtonClassName="p-button-success" 
-              incrementButtonIcon="pi pi-plus" 
-              decrementButtonIcon="pi pi-minus"/>
-              <label htmlFor="taxajuros">Taxa de juros (% a.a.)</label>
-            </FloatLabel>
+            <label htmlFor="taxajuros"> 
+              <i className="pi pi-percentage mr-1 taxa-info" /> 
+              Taxa de juros (% a.a.)
+            </label>
+            <input id="taxajuros"
+              value={taxaJuros} 
+              onChange={(e) => setTaxaJuros(e.target.value)}
+              className="w-full"/>
           </div>
 
-          <div class='field col'>
-            <FloatLabel>  
-            <InputNumber id='periodo'
-              className="form-control"
-              value={periodo}
-              onValueChange={(e) => setPeriodo(e.value)}/>
-              <label htmlFor="periodo">periodo</label>
-            </FloatLabel> 
+          <div className="field col-12 md:col-6 lg:col-3">
+              <label htmlFor="periodo">
+                <i className="pi pi-calendar mr-1" />
+                Período (meses)
+              </label>
+              <input
+                id="periodo"
+                value={periodo}
+                onChange={(e) => setPeriodo(e.target.value)}
+                className="w-full"
+              />
           </div>
       </div>
 
@@ -123,7 +110,6 @@ const CapturaDados = () => {
         <Button className="btn btn-primary px-4" onClick={calcular}>
           Calcular
         </Button>
-
         <Button className="btn btn-secondary px-4" onClick={limpar}>
           Limpar
         </Button>
@@ -134,8 +120,7 @@ const CapturaDados = () => {
           valorFinal={resultados.valorFinal}
           numAportes={resultados.numAportes}
           jurosAcumulados={resultados.jurosAcumulados}
-          rentabilidade={resultados.rentabilidade}
-        />
+          rentabilidade={resultados.rentabilidade}/>
       )}
 
       <HistoricoSimulacoes novoResultado={resultados} />

@@ -6,7 +6,7 @@ const ExibeDados = ({
   rentabilidade = null,
 }) => {
   return (
-    <div className="mt-4">
+    <div className="mt-4 flex-row">
       <h4 className="text-center mb-3 text-success">Resultados da simulação</h4>
 
       <div className="row g-3">
