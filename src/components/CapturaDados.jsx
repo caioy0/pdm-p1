@@ -1,14 +1,17 @@
 // src/components/CapturaDados.jsx
 import { useState } from 'react'
-import { InputNumber } from 'primereact/inputnumber';
+import { InputNumber } from 'primereact/inputnumber'
+import { Button } from 'primereact/button'
+import { FloatLabel } from 'primereact/floatlabel'
+import 'primeicons/primeicons.css'
 import ExibeDados from './ExibeDados.jsx'
 import HistoricoSimulacoes from './HistoricoSimulacoes.jsx'
 
 const CapturaDados = () => {
-  const [valorInicial, setValorInicial] = useState(0)
-  const [valorAporte, setValorAporte] = useState(0)
-  const [taxaJuros, setTaxaJuros] = useState(0)
-  const [periodo, setPeriodo] = useState(0)
+  const [valorInicial, setValorInicial] = useState(null)
+  const [valorAporte, setValorAporte] = useState(null)
+  const [taxaJuros, setTaxaJuros] = useState(null)
+  const [periodo, setPeriodo] = useState(null)
   const [resultados, setResultados] = useState(null)
 
   const calcular = () => {
@@ -45,70 +48,85 @@ const CapturaDados = () => {
   }
 
   const limpar = () => {
-    setValorInicial(0)
-    setValorAporte(0)
-    setTaxaJuros(0)
-    setPeriodo(0)
+    setValorInicial('')
+    setValorAporte('')
+    setTaxaJuros('')
+    setPeriodo('')
     setResultados(null)
   }
 
   return (
-    <div>
-      <div
-        className="mt-3 p-3"
-        style={{
-          margin: 'auto',
-          maxWidth: '768px',
-          backgroundColor: '#f8f9fa',
-          borderRadius: '8px',
-        }}
-      >
-        <input
-          placeholder="Valor inicial"
-          type="number"
-          className="form-control mb-2"
-          value={valorInicial}
-          onChange={(e) => setValorInicial(e.target.value)}
-        />
+    <div  className="p-4" style={{ maxWidth: '860px', margin: '0 auto' }}>
+      
+      <div className="p-4"
+      class="form grid">
+          <div className="field col-12 md:col-6 lg:col-3">
+            <FloatLabel>
+              <InputNumber
+                id="valor-inicial"
+                value={valorInicial}
+                onValueChange={(e) => setValorInicial(e.value)}
+                mode="currency"
+                currency="BRL"
+                locale="pt-BR"
+                minFractionDigits={2}
+                className="w-full"
+              />
+              <label htmlFor="valor-inicial">
+                <i className="pi pi-wallet mr-1" />
+                Valor inicial
+              </label>
+            </FloatLabel>
+          </div>
 
-        <input
-          placeholder="Aporte mensal"
-          type="number"
-          className="form-control mb-2"
-          value={valorAporte}
-          onChange={(e) => setValorAporte(e.target.value)}
-        />
-
+          <div class='field col'>
+            <FloatLabel>  
+            <InputNumber id='aporte-mensal'
+              className="form-control "
+              value={valorAporte}
+              onValueChange={(e) => setValorAporte(e.value)}/>
+              <label htmlFor="aporte-mensal">Aporte mensal</label>
+            </FloatLabel> 
+          </div>
         {/* <input
           placeholder="Taxa de juros (% a.a.)"
           type="number"
           className="form-control mb-2"
           value={taxaJuros}
           onChange={(e) => setTaxaJuros(e.target.value)}
-        /> */}
-        <InputNumber placeholder="Taxa de juros (% a.a.)" 
-        value={taxaJuros} onValueChange={(e) => setTaxaJuros(e.value)} suffix="%" 
-        showButtons buttonLayout="horizontal" step={0.25}
-        decrementButtonClassName="p-button-danger" incrementButtonClassName="p-button-success" 
-        incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"/>
+          /> */}
+          <div class='field col'>
+            <FloatLabel>
+              <InputNumber id="taxajuros"
+              value={taxaJuros} onValueChange={(e) => setTaxaJuros(e.value)} suffix="%" 
+              showButtons buttonLayout="horizontal" step={0.25}
+              decrementButtonClassName="p-button-danger" 
+              incrementButtonClassName="p-button-success" 
+              incrementButtonIcon="pi pi-plus" 
+              decrementButtonIcon="pi pi-minus"/>
+              <label htmlFor="taxajuros">Taxa de juros (% a.a.)</label>
+            </FloatLabel>
+          </div>
 
-        <input
-          placeholder="Periodo (meses)"
-          type="number"
-          className="form-control mb-3"
-          value={periodo}
-          onChange={(e) => setPeriodo(e.target.value)}
-        />
+          <div class='field col'>
+            <FloatLabel>  
+            <InputNumber id='periodo'
+              className="form-control"
+              value={periodo}
+              onValueChange={(e) => setPeriodo(e.value)}/>
+              <label htmlFor="periodo">periodo</label>
+            </FloatLabel> 
+          </div>
       </div>
 
       <div className="d-flex justify-content-center gap-2 mt-3">
-        <button className="btn btn-primary px-4" onClick={calcular}>
+        <Button className="btn btn-primary px-4" onClick={calcular}>
           Calcular
-        </button>
+        </Button>
 
-        <button className="btn btn-secondary px-4" onClick={limpar}>
+        <Button className="btn btn-secondary px-4" onClick={limpar}>
           Limpar
-        </button>
+        </Button>
       </div>
 
       {resultados && (

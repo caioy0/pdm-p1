@@ -1,5 +1,4 @@
 // src/components/ExibeDados.jsx
-
 const ExibeDados = ({
   valorFinal = null,
   numAportes = null,
