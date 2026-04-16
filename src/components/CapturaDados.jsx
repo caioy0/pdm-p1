@@ -1,75 +1,129 @@
 // src/components/CapturaDados.jsx
+import { useState } from 'react'
+import { Button } from 'primereact/button'
+import ExibeDados from './ExibeDados.jsx'
+import HistoricoSimulacoes from './HistoricoSimulacoes.jsx'
 
-const CapturaDados = ({
-  valorInicial,
-  setValorInicial,
-  valorAporte,
-  setValorAporte,
-  taxaJuros,
-  setTaxaJuros,
-  periodo,
-  setPeriodo,
-  calcular,           
-}) => {
+const CapturaDados = () => {
+  const [valorInicial, setValorInicial] = useState(null)
+  const [valorAporte, setValorAporte] = useState(null)
+  const [taxaJuros, setTaxaJuros] = useState(null)
+  const [periodo, setPeriodo] = useState(null)
+  const [resultados, setResultados] = useState(null)
+
+  const calcular = () => {
+    const vi = Number(valorInicial)
+    const va = Number(valorAporte)
+    const taxaMensal = Number(taxaJuros) / 100 / 12
+    const quantidadeMeses = Number(periodo)
+
+    if (vi < 0 || va < 0 || taxaMensal < 0 || quantidadeMeses <= 0) {
+      alert('Por favor, preencha valores validos!')
+      return
+    }
+
+    let valorFinal = vi * Math.pow(1 + taxaMensal, quantidadeMeses)
+
+    if (taxaMensal > 0) {
+      valorFinal +=
+        va * ((Math.pow(1 + taxaMensal, quantidadeMeses) - 1) / taxaMensal)
+    } else {
+      valorFinal += va * quantidadeMeses
+    }
+
+    const totalAportado = vi + va * quantidadeMeses
+    const jurosAcumulados = valorFinal - totalAportado
+    const rentabilidade =
+      totalAportado > 0 ? ((valorFinal / totalAportado) - 1) * 100 : 0
+
+    setResultados({
+      valorFinal: Number(valorFinal.toFixed(2)),
+      numAportes: quantidadeMeses,
+      jurosAcumulados: Number(jurosAcumulados.toFixed(2)),
+      rentabilidade: Number(rentabilidade.toFixed(2)),
+    })
+  }
+
+  const limpar = () => {
+    setValorInicial('')
+    setValorAporte('')
+    setTaxaJuros('')
+    setPeriodo('')
+    setResultados(null)
+  }
+
   return (
-    <div>
-      <div
-        className="mt-3 p-3"
-        style={{
-          margin: 'auto',
-          maxWidth: '768px',
-          backgroundColor: '#f8f9fa',
-          borderRadius: '8px',
-        }}
-      >
-        <input
-          placeholder="Valor inicial"
-          type="number"
-          className="form-control mb-2"
-          value={valorInicial}
-          onChange={(e) => setValorInicial(e.target.value)}
-        />
-        <input
-          placeholder="Aporte mensal"
-          type="number"
-          className="form-control mb-2"
-          value={valorAporte}
-          onChange={(e) => setValorAporte(e.target.value)}
-        />
-        <input
-          placeholder="Taxa de juros (% a.a.)"
-          type="number"
-          className="form-control mb-2"
-          value={taxaJuros}
-          onChange={(e) => setTaxaJuros(e.target.value)}
-        />
-        <input
-          placeholder="Período (meses)"
-          type="number"
-          className="form-control mb-3"
-          value={periodo}
-          onChange={(e) => setPeriodo(e.target.value)}
-        />
+    <div  className="p-4" style={{ maxWidth: '860px', margin: '0 auto' }}>
+      <div className="p-4"
+        class="form grid">
+          <div className="field col-12 md:col-6 lg:col-3">
+              <label htmlFor="valor-inicial">
+                <i className="pi pi-wallet mr-1" />
+                Valor inicial
+              </label>
+              <input
+                id="valor-inicial"
+                value={valorInicial}
+                onChange={(e) => setValorInicial(e.target.value)}
+                type="number"
+                step="0.1"
+                className="w-full"/>
+          </div>
+
+          <div class='field col'>
+            <label htmlFor="aporte-mensal">
+                <i className="pi pi-plus-circle mr-1" />
+                Aporte mensal
+              </label>
+            <input
+                id="aporte-mensal"
+                value={valorAporte}
+                onChange={(e) => setValorAporte(e.target.value)}
+                className="w-full"/>
+          </div>
+          <div class='field col'>
+            <label htmlFor="taxajuros"> 
+              <i className="pi pi-percentage mr-1 taxa-info" /> 
+              Taxa de juros (% a.a.)
+            </label>
+            <input id="taxajuros"
+              value={taxaJuros} 
+              onChange={(e) => setTaxaJuros(e.target.value)}
+              className="w-full"/>
+          </div>
+
+          <div className="field col-12 md:col-6 lg:col-3">
+              <label htmlFor="periodo">
+                <i className="pi pi-calendar mr-1" />
+                Período (meses)
+              </label>
+              <input
+                id="periodo"
+                value={periodo}
+                onChange={(e) => setPeriodo(e.target.value)}
+                className="w-full"
+              />
+          </div>
       </div>
 
       <div className="d-flex justify-content-center gap-2 mt-3">
-        <button className="btn btn-primary px-4" onClick={calcular}>
+        <Button className="btn btn-primary px-4" onClick={calcular}>
           Calcular
-        </button>
-        
-        <button 
-          className="btn btn-secondary px-4" 
-          onClick={() => {
-            // Limpa tudo
-            setValorInicial(0)
-            setValorAporte(0)
-            setTaxaJuros(0)
-            setPeriodo(0)
-          }}
-        >
+        </Button>
+        <Button className="btn btn-secondary px-4" onClick={limpar}>
           Limpar
-        </button>
+        </Button>
       </div>
+
+      {resultados && (
+        <ExibeDados
+          valorFinal={resultados.valorFinal}
+          numAportes={resultados.numAportes}
+          jurosAcumulados={resultados.jurosAcumulados}
+          rentabilidade={resultados.rentabilidade}/>
+      )}
+
+      <HistoricoSimulacoes novoResultado={resultados} />
     </div>
   )
 }

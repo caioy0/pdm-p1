@@ -1,14 +1,13 @@
 // src/components/ExibeDados.jsx
-
 const ExibeDados = ({
-  valorFinal = 0,
-  numAportes = 0,
-  jurosAcumulados = 0,
-  rentabilidade = 0,
+  valorFinal = null,
+  numAportes = null,
+  jurosAcumulados = null,
+  rentabilidade = null,
 }) => {
   return (
-    <div className="mt-4">
-      <h4 className="text-center mb-3 text-success">Resultados da simulacao</h4>
+    <div className="mt-4 flex-row">
+      <h4 className="text-center mb-3 text-success">Resultados da simulação</h4>
 
       <div className="row g-3">
         <div className="col-12 col-md-6">
@@ -16,7 +15,7 @@ const ExibeDados = ({
             <div className="card-body">
               <p className="text-muted mb-1 small">Valor final acumulado</p>
               <h4 className="text-success mb-0">
-                R$ {Number(valorFinal).toLocaleString('pt-BR')}
+                R$ {Number(valorFinal)}
               </h4>
             </div>
           </div>
@@ -36,7 +35,7 @@ const ExibeDados = ({
             <div className="card-body">
               <p className="text-muted mb-1 small">Juros acumulados</p>
               <h4 className="text-primary mb-0">
-                R$ {Number(jurosAcumulados).toLocaleString('pt-BR')}
+                R$ {Number(jurosAcumulados)}
               </h4>
             </div>
           </div>
