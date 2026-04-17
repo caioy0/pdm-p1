@@ -9,13 +9,13 @@ const CapturaDados = () => {
   const [valorAporte, setValorAporte] = useState(null)
   const [taxaJuros, setTaxaJuros] = useState(null)
   const [periodo, setPeriodo] = useState(null)
-  const [resultados, setResultados] = useState(null)
+  const [resultados, setResultados] = useState({})
   const [historico, setHistorico] = useState([])
 
   const calcular = () => {
     const vi = Number(valorInicial)
     const va = Number(valorAporte)
-    const taxaMensal = Number(taxaJuros) / 100 / 12
+    const taxaMensal = Number(taxaJuros) / 100 
     const quantidadeMeses = Number(periodo)
 
     if (vi < 0 || va < 0 || taxaMensal < 0 || quantidadeMeses <= 0) {
@@ -36,12 +36,14 @@ const CapturaDados = () => {
     const jurosAcumulados = valorFinal - totalAportado
     const rentabilidade =
       totalAportado > 0 ? ((valorFinal / totalAportado) - 1) * 100 : 0
+    const totalInvestido = vi + va * quantidadeMeses
 
     const novoResultado = {
       valorFinal: Number(valorFinal.toFixed(2)),
       numAportes: quantidadeMeses,
       jurosAcumulados: Number(jurosAcumulados.toFixed(2)),
       rentabilidade: Number(rentabilidade.toFixed(2)),
+      totalInvestido: Number(totalInvestido.toFixed(2)),
     }
 
     setResultados(novoResultado)
@@ -52,12 +54,30 @@ const CapturaDados = () => {
   }
 
   const limpar = () => {
-    setValorInicial('')
-    setValorAporte('')
-    setTaxaJuros('')
-    setPeriodo('')
-    setResultados(null)
-  }
+  setValorInicial('')
+  setValorAporte('')
+  setTaxaJuros('')
+  setPeriodo('')
+  setResultados({
+    valorFinal: null,
+    numAportes: null,
+    jurosAcumulados: null,
+    rentabilidade: null,
+  })
+}
+
+  let conteudoResultados = null
+  if (resultados.valorFinal !== undefined) {
+  conteudoResultados = (
+    <ExibeDados
+      valorFinal={resultados.valorFinal}
+      numAportes={resultados.numAportes}
+      jurosAcumulados={resultados.jurosAcumulados}
+      rentabilidade={resultados.rentabilidade}
+      totalInvestido={resultados.totalInvestido}
+    />
+  )
+}
 
   return (
     <div  className="p-4" style={{ maxWidth: '860px', margin: '0 auto' }}>
@@ -91,7 +111,7 @@ const CapturaDados = () => {
           <div class='field col'>
             <label htmlFor="taxajuros"> 
               <i className="pi pi-percentage mr-1 taxa-info" /> 
-              Taxa de juros
+              Taxa de juros (mes)
             </label>
             <input id="taxajuros"
               value={taxaJuros} 
@@ -114,21 +134,15 @@ const CapturaDados = () => {
       </div>
 
       <div className="d-flex justify-content-center gap-2 mt-3">
-        <Button className="btn btn-primary px-4" onClick={calcular}>
-          Calcular
-        </Button>
-        <Button className="btn btn-secondary px-4" onClick={limpar}>
-          Limpar
-        </Button>
+        <Button className="btn btn-primary px-4" 
+        onClick={calcular}
+        label="Calcular" icon="pi pi-check" text raised/>
+        <Button className="btn btn-secondary px-4" 
+        onClick={limpar}
+        label="Limpar" icon="pi pi-trash outlined"/>
       </div>
 
-      {resultados && (
-        <ExibeDados
-          valorFinal={resultados.valorFinal}
-          numAportes={resultados.numAportes}
-          jurosAcumulados={resultados.jurosAcumulados}
-          rentabilidade={resultados.rentabilidade}/>
-      )}
+      {conteudoResultados}
 
       <HistoricoSimulacoes historico={historico} />
     </div>
