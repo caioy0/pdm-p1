@@ -39,18 +39,21 @@ const CapturaDados = () => {
     const totalInvestido = vi + va * quantidadeMeses
 
     const novoResultado = {
-      valorFinal: Number(valorFinal.toFixed(2)),
+      valorFinal: Number(valorFinal),
       numAportes: quantidadeMeses,
-      jurosAcumulados: Number(jurosAcumulados.toFixed(2)),
-      rentabilidade: Number(rentabilidade.toFixed(2)),
-      totalInvestido: Number(totalInvestido.toFixed(2)),
+      jurosAcumulados: Number(jurosAcumulados),
+      rentabilidade: Number(rentabilidade),
+      totalInvestido: Number(totalInvestido),
     }
 
-    setResultados(novoResultado)
-    setHistorico((prev) => [
-      ...prev,
-      { valorFinal: novoResultado.valorFinal, dataHora: new Date() },
-    ])
+    const novoHistorico = [...historico]
+    novoHistorico.push({
+      valorFinal: novoResultado.valorFinal,
+      dataHora: new Date(),
+    })
+
+     setResultados(novoResultado)
+    setHistorico(novoHistorico)
   }
 
   const limpar = () => {
@@ -99,11 +102,12 @@ const CapturaDados = () => {
 
           <div class='field col'>
             <label htmlFor="aporte-mensal">
-                <i className="pi pi-plus-circle mr-1" />
+                <i className="pi pi-plus-circle mr-2" />
                 Aporte mensal
               </label>
             <input
                 id="aporte-mensal"
+                type="number"
                 value={valorAporte}
                 onChange={(e) => setValorAporte(e.target.value)}
                 className="w-full"/>
@@ -115,6 +119,7 @@ const CapturaDados = () => {
             </label>
             <input id="taxajuros"
               value={taxaJuros} 
+              type="number"
               onChange={(e) => setTaxaJuros(e.target.value)}
               className="w-full"/>
           </div>
