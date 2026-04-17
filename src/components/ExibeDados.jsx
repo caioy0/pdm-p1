@@ -44,7 +44,7 @@ const ExibeDados = ({
           <div className="col-12 md:col-6">
             <div className="card text-center p-3">
               <p className="text-500 mb-1">Nº de aportes</p>
-              <h4 className="m-0">{numAportes}</h4>
+              <h4 className="m-0">{Number(numAportes)}</h4>
             </div>
           </div>
 

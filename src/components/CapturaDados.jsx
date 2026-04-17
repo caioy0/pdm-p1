@@ -15,7 +15,7 @@ const CapturaDados = () => {
   const calcular = () => {
     const vi = Number(valorInicial)
     const va = Number(valorAporte)
-    const taxaMensal = Number(taxaJuros) / 100 
+    const taxaMensal = Number(taxaJuros) / 100
     const quantidadeMeses = Number(periodo)
 
     if (vi < 0 || va < 0 || taxaMensal < 0 || quantidadeMeses <= 0) {
@@ -52,99 +52,106 @@ const CapturaDados = () => {
       dataHora: new Date(),
     })
 
-     setResultados(novoResultado)
+    setResultados(novoResultado)
     setHistorico(novoHistorico)
   }
 
   const limpar = () => {
-  setValorInicial('')
-  setValorAporte('')
-  setTaxaJuros('')
-  setPeriodo('')
-  setResultados({
-    valorFinal: null,
-    numAportes: null,
-    jurosAcumulados: null,
-    rentabilidade: null,
-  })
-}
+    setValorInicial('')
+    setValorAporte('')
+    setTaxaJuros('')
+    setPeriodo('')
+    setResultados({
+      valorFinal: null,
+      numAportes: null,
+      jurosAcumulados: null,
+      rentabilidade: null,
+    })
+  }
 
   let conteudoResultados = null
   if (resultados.valorFinal !== undefined) {
-  conteudoResultados = (
-    <ExibeDados
-      valorFinal={resultados.valorFinal}
-      numAportes={resultados.numAportes}
-      jurosAcumulados={resultados.jurosAcumulados}
-      rentabilidade={resultados.rentabilidade}
-      totalInvestido={resultados.totalInvestido}
-    />
-  )
-}
+    conteudoResultados = (
+      <ExibeDados
+        valorFinal={resultados.valorFinal}
+        numAportes={resultados.numAportes}
+        jurosAcumulados={resultados.jurosAcumulados}
+        rentabilidade={resultados.rentabilidade}
+        totalInvestido={resultados.totalInvestido}
+      />
+    )
+  }
 
   return (
-    <div  className="p-4" style={{ maxWidth: '860px', margin: '0 auto' }}>
-      <div className="p-4"
-        class="form grid">
-          <div className="field col-12 md:col-6 lg:col-3">
-              <label htmlFor="valor-inicial">
-                <i className="pi pi-wallet mr-1" />
-                Valor inicial
-              </label>
-              <input
-                id="valor-inicial"
-                value={valorInicial}
-                onChange={(e) => setValorInicial(e.target.value)}
-                type="number"
-                step="0.1"
-                className="w-full"/>
-          </div>
+    <div className="p-4 surface-card border-round" style={{ maxWidth: '860px', margin: '0 auto' }}>
+      <div className="grid formgrid p-fluid gap-3">
+        <div className="field col-12 md:col-6 lg:col-3">
+          <label htmlFor="valor-inicial">
+            <i className="pi pi-wallet mr-2" />
+            Valor inicial
+          </label>
+          <input
+            id="valor-inicial"
+            placeholder="R$ 0,00"
+            value={valorInicial}
+            onChange={(e) => setValorInicial(e.target.value)}
+            type="number"
+            step="0.1"
+            className="w-full" />
+        </div>
 
-          <div class='field col'>
-            <label htmlFor="aporte-mensal">
-                <i className="pi pi-plus-circle mr-2" />
-                Aporte mensal
-              </label>
-            <input
-                id="aporte-mensal"
-                type="number"
-                value={valorAporte}
-                onChange={(e) => setValorAporte(e.target.value)}
-                className="w-full"/>
-          </div>
-          <div class='field col'>
-            <label htmlFor="taxajuros"> 
-              <i className="pi pi-percentage mr-1 taxa-info" /> 
-              Taxa de juros (mes)
-            </label>
-            <input id="taxajuros"
-              value={taxaJuros} 
-              type="number"
-              onChange={(e) => setTaxaJuros(e.target.value)}
-              className="w-full"/>
-          </div>
+        <div class='field col'>
+          <label htmlFor="aporte-mensal">
+            <i className="pi pi-money-bill mr-2" />
+            Aporte mensal
+          </label>
+          <input
+            id="aporte-mensal"
+            placeholder="R$ 0,00"
+            type="number"
+            value={valorAporte}
+            onChange={(e) => setValorAporte(e.target.value)}
+            className="w-full" />
+        </div>
+        <div class='field col'>
+          <label htmlFor="taxajuros">
+            <i className="pi pi-percentage mr-2" />
+            Taxa de juros (mês)
+          </label>
+          <input id="taxajuros"
+            value={taxaJuros}
+            type="number"
+            placeholder="0.0%"
+            onChange={(e) => setTaxaJuros(e.target.value)}
+            className="w-full" />
+        </div>
 
-          <div className="field col-12 md:col-6 lg:col-3">
-              <label htmlFor="periodo">
-                <i className="pi pi-calendar mr-1" />
-                Período (meses)
-              </label>
-              <input
-                id="periodo"
-                value={periodo}
-                onChange={(e) => setPeriodo(e.target.value)}
-                className="w-full"
-              />
-          </div>
+        <div className="field col-12 md:col-6 lg:col-3">
+          <label htmlFor="periodo">
+            <i className="pi pi-calendar mr-2" />
+            Período (meses)
+          </label>
+          <input
+            id="periodo"
+            placeholder="Meses"
+            value={periodo}
+            onChange={(e) => setPeriodo(e.target.value)}
+            className="w-full"
+          />
+        </div>
       </div>
 
       <div className="d-flex justify-content-center gap-2 mt-3">
-        <Button className="btn btn-primary px-4" 
-        onClick={calcular}
-        label="Calcular" icon="pi pi-check" text raised/>
-        <Button className="btn btn-secondary px-4" 
-        onClick={limpar}
-        label="Limpar" icon="pi pi-trash outlined"/>
+        <Button className="btn btn-primary px-4"
+          onClick={calcular}
+          label="Calcular" 
+          icon="pi pi-calculator"
+          raised />
+        <Button className="btn btn-secondary px-4"
+          onClick={limpar}
+          label="Limpar" 
+          icon="pi pi-refresh"
+          outlined />
       </div>
 
       {conteudoResultados}
