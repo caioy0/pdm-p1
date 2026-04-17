@@ -18,7 +18,7 @@ const CapturaDados = () => {
     const taxaMensal = Number(taxaJuros) / 100
     const quantidadeMeses = Number(periodo)
 
-    if (vi <= 0 || va <= 0 || taxaMensal <= 0 || quantidadeMeses <= 0) {
+    if (vi <= 0 || va <= 0 || taxaMensal < 0 || quantidadeMeses <= 0) {
       alert('Por favor, preencha valores validos!')
       return
     }
@@ -40,10 +40,10 @@ const CapturaDados = () => {
 
     const novoResultado = {
       valorFinal: Number(valorFinal),
+      totalInvestido: Number(totalInvestido),
       numAportes: quantidadeMeses,
       jurosAcumulados: Number(jurosAcumulados),
       rentabilidade: Number(rentabilidade),
-      totalInvestido: Number(totalInvestido),
     }
 
     const novoHistorico = [...historico]
