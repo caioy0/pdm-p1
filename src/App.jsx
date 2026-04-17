@@ -1,5 +1,4 @@
 // src/App.jsx
-import 'bootstrap/dist/css/bootstrap.min.css'
 import CapturaDados from './components/CapturaDados.jsx'
 
 const App = () => {

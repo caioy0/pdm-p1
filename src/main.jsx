@@ -6,6 +6,7 @@ import 'primereact/resources/primereact.min.css'
 import 'primereact/resources/themes/nano/theme.css'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
