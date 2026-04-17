@@ -52,7 +52,7 @@ const ExibeDados = ({
             <div className="card border-1 border-blue-400 text-center p-3">
               <p className="text-500 mb-1">Rentabilidade</p>
               <h4 className="text-blue-500 m-0">
-                {rentabilidade}%
+                {Number(rentabilidade)}%
               </h4>
             </div>
           </div>

@@ -18,7 +18,7 @@ const CapturaDados = () => {
     const taxaMensal = Number(taxaJuros) / 100
     const quantidadeMeses = Number(periodo)
 
-    if (vi < 0 || va < 0 || taxaMensal < 0 || quantidadeMeses <= 0) {
+    if (vi <= 0 || va <= 0 || taxaMensal <= 0 || quantidadeMeses <= 0) {
       alert('Por favor, preencha valores validos!')
       return
     }
@@ -134,6 +134,7 @@ const CapturaDados = () => {
           <input
             id="periodo"
             placeholder="Meses"
+            type='number'
             value={periodo}
             onChange={(e) => setPeriodo(e.target.value)}
             className="w-full"
