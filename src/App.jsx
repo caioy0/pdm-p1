@@ -1,20 +1,19 @@
 // src/App.jsx
-import 'bootstrap/dist/css/bootstrap.min.css'
 import CapturaDados from './components/CapturaDados.jsx'
 
 const App = () => {
   return (
-    <div className="container py-4">
-      <div className="row justify-content-center">
-        <div className="p-p-4 pg-2 col-12 col-md-8 col-lg-6">
-          <div className="card border-responsive">
-            <div className="card-body text-center">
-              <h1 className="h3 mb-2">Hello, Investimentos</h1>
-              <div class="flex flex-wrap justify-content-center">
-                <CapturaDados />
-              </div>
-            </div>
-          </div>
+    <div className="min-h-screen flex justify-content-center align-items-center p-4">
+      <div className="surface-card border-round shadow-3 p-4 w-full md:w-10 lg:w-6">
+        <div className="text-center mb-4">
+              <h1 className="text-2xl font-semibold m-0 flex align-items-center justify-content-center gap-2">
+                <i className="pi pi-chart-line"></i>
+                Hello, Investimentos
+              </h1>
+        </div>
+
+        <div className="flex justify-content-center">
+          <CapturaDados />
         </div>
       </div>
     </div>

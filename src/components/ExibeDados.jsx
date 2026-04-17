@@ -4,50 +4,78 @@ const ExibeDados = ({
   numAportes = null,
   jurosAcumulados = null,
   rentabilidade = null,
+  totalInvestido = null,
 }) => {
   return (
-    <div className="mt-4">
-      <h4 className="text-center mb-3 text-success">Resultados da simulação</h4>
+    <div className="mt-5">
+      <div className="card shadow-2 border-round p-4 bg-light">
 
-      <div className="row g-3">
-        <div className="col-12 col-md-6">
-          <div className="card border-success h-100 text-center">
-            <div className="card-body">
-              <p className="text-muted mb-1 small">Valor final acumulado</p>
-              <h4 className="text-success mb-0">
-                R$ {Number(valorFinal)}
+        <h4 className="text-center mb-4 ">
+          <i className="pi pi-chart-bar"></i>
+          Resultados da simulação
+        </h4>
+
+
+        <div className="flex justify-content-center mb-4">
+          <div className="w-full md:w-6">
+            <div className="card border-1 border-success text-center p-3">
+              <p className="text-500 mb-1">
+                <i className="pi pi-dollar mr-2"></i>
+                Valor final acumulado
+              </p>
+              <h2 className="text-success m-0">
+                R$ {Number(valorFinal).toFixed(2)}
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid">
+
+          <div className="col-12 md:col-6">
+            <div className="card border-1 border-green-400 text-center p-3">
+              <p className="text-500 mb-1">
+                <i className="pi pi-wallet mr-2"></i>
+                Total investido
+              </p>
+              <h4 className="m-0">R$ {Number(totalInvestido).toFixed(2)}</h4>
+            </div>
+          </div>
+
+          <div className="col-12 md:col-6">
+            <div className="card border-1 border-primary text-center p-3">
+              <p className="text-500 mb-1">
+                <i className="pi pi-chart-line mr-2"></i>
+                Juros acumulados
+              </p>
+              <h4 className="text-primary m-0">
+                R$ {Number(jurosAcumulados).toFixed(2)}
               </h4>
             </div>
           </div>
-        </div>
 
-        <div className="col-12 col-md-6">
-          <div className="card h-100 text-center">
-            <div className="card-body">
-              <p className="text-muted mb-1 small">Numero de aportes</p>
-              <h4 className="mb-0">{numAportes}</h4>
+          <div className="col-12 md:col-6">
+            <div className="card text-center p-3">
+              <p className="text-500 mb-1">
+                <i className="pi pi-sort-amount-up mr-2"></i>
+                Nº de aportes
+              </p>
+              <h4 className="m-0">{Number(numAportes)}</h4>
             </div>
           </div>
-        </div>
 
-        <div className="col-12 col-md-6">
-          <div className="card border-primary h-100 text-center">
-            <div className="card-body">
-              <p className="text-muted mb-1 small">Juros acumulados</p>
-              <h4 className="text-primary mb-0">
-                R$ {Number(jurosAcumulados)}
+          <div className="col-12 md:col-6">
+            <div className="card border-1 border-blue-400 text-center p-3">
+              <p className="text-500 mb-1">
+                <i className="pi pi-percentage mr-2"></i>
+                Rentabilidade
+              </p>
+              <h4 className="text-blue-500 m-0">
+                {Number(rentabilidade).toFixed(2)}%
               </h4>
             </div>
           </div>
-        </div>
 
-        <div className="col-12 col-md-6">
-          <div className="card border-info h-100 text-center">
-            <div className="card-body">
-              <p className="text-muted mb-1 small">Rentabilidade</p>
-              <h4 className="text-info mb-0">{rentabilidade}%</h4>
-            </div>
-          </div>
         </div>
       </div>
     </div>
